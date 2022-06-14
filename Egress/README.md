@@ -20,7 +20,7 @@ istioctl install --set meshConfig.outboundTrafficPolicy.mode=ALLOW_ANY
 ## Deny all egress traffic
 1. Check connectivity for external services
 ```bash
-kubectl exec -ti sleep-698cfc4445-jl7ms -- curl -I ifconfig.me | grep HTTP/
+kubectl exec -ti sleep-698cfc4445-jl7ms -- curl -I httpbin.org | grep HTTP/
 
 HTTP/1.1 200 OK
 ```
@@ -33,22 +33,49 @@ istioctl install --set meshConfig.outboundTrafficPolicy.mode=REGISTRY_ONLY
 
 3. Check connectivity again
 ```bash
-kubectl exec -ti sleep-698cfc4445-jl7ms -- curl -I ifconfig.me | grep HTTP/
+kubectl exec -ti sleep-698cfc4445-jl7ms -- curl -I httpbin.org | grep HTTP/
 
 HTTP/1.1 502 Bad Gateway
 ```
 
 ## Allow egress to some destinations
-1. Add `ifconfig.me` as `ServiceEntry` to allow egress traffic to it
+1. Add `httpbin.org` as `ServiceEntry` to allow egress traffic to it
 ```bash
-kubectl apply -f Egress/service-entry-ifconfigme.yaml
+kubectl apply -f Egress/service-entry-httpbin.yaml
 ```
 
 2. Test connection again
 ```bash
-kubectl exec -ti sleep-698cfc4445-jl7ms -- curl -I ifconfig.me | grep HTTP/
+kubectl exec -ti sleep-698cfc4445-jl7ms -- curl -I httpbin.org | grep HTTP/
 
 HTTP/1.1 200 OK
+```
+
+## Set a timeout
+1. Create a `service entry` due to manage the external destination through Istio
+```bash
+kubectl apply -f Egress/service-entry-httpbin.yaml
+```
+
+2. Create a `virtual service` with a 2s timeout when host is 'httpbin.org'
+```bash
+kubectl apply -f Egress/virtual-service-httpbin.yaml
+```
+
+## Test
+1. Make a request with a 1 second delay
+```bash
+```bash
+kubectl exec -ti sleep-698cfc4445-jl7ms -- curl -I httpbin.org/delay/1 | grep HTTP/
+
+HTTP/1.1 200 OK
+```
+
+1. Make a request with a 3 seconds delay
+```bash
+kubectl exec -ti sleep-698cfc4445-jl7ms -- curl -I httpbin.org/delay/3 | grep HTTP/
+
+HTTP/1.1 504 Gateway Timeout
 ```
 
 ------------
