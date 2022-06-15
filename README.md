@@ -54,22 +54,19 @@ kubectl exec "$(kubectl get pod -l app=ratings -o jsonpath='{.items[0].metadata.
 kubectl apply -f bookinfo/networking/bookinfo-gateway.yaml 
 ```
 
-6. Export ports
+6. Export ports and  Build the Gateway URL
 ```bash
 export INGRESS_PORT=$(kubectl -n istio-system get service istio-ingressgateway -o jsonpath='{.spec.ports[?(@.name=="http2")].nodePort}')
 export INGRESS_HOST=$(kubectl get po -l istio=ingressgateway -n istio-system -o jsonpath='{.items[0].status.hostIP}')
-```
-
-7. Build the Gateway URL
-```bash
 export GATEWAY_URL=$INGRESS_HOST:$INGRESS_PORT
 ```
 
-8. Browse the generated url 
+7. Browse the generated url 
 ```bash
 echo $GATEWAY_URL/productpage
 
 ---
+#Example
 172.25.0.2:31740/productpage
 ```
 
