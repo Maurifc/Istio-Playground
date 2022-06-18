@@ -11,7 +11,7 @@ Create traffic routing to split traffic between `Red` and `Green` app.
 
 ```bash
 kubectl apply -f Traffic/80-percent-traffic/virtualservice.yaml
-kubectl apply -f Traffic/80-percent-traffic/destinationrule.yaml
+kubectl apply -f Traffic/80-percent-traffic/destination-rule.yaml
 ```
 
 
@@ -45,6 +45,6 @@ Go to `Graph` while the `wget still runs` and see how traffic goes
 Remove virtual service and destination rules
 ```bash
 kubectl delete -f Traffic/80-percent-traffic/virtualservice.yaml
-kubectl delete -f Traffic/80-percent-traffic/destinationrule.yaml
+kubectl delete -f Traffic/80-percent-traffic/destination-rule.yaml
 ```
 
