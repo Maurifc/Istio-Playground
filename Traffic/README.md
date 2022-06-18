@@ -34,9 +34,9 @@ Three images were used
 - maurifc/sample-app:green
 - maurifc/sample-app:blue
 
-Create two deployements, `red` and `green`.
+Create two deployements, `red`, `green` and `blue`.
 ```bash
-kubectl apply -f Traffic/80-percent-traffic/app.yaml
+kubectl apply -f Traffic/app.yaml
 ```
 
 Wait until `myapp` pods are up and running
@@ -49,5 +49,5 @@ Now you're ready to test the `traffic management` using Istio
 ## Clean Up
 If you want to `remove` the Sample App, just run the command below:
 ```bash
-kubectl delete -f Traffic/80-percent-traffic/app.yaml
+kubectl delete -f Traffic/app.yaml
 ```

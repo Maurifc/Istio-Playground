@@ -25,7 +25,7 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: myapp-canary
+  name: myapp-green
   labels:
     app: myapp
     version: green
@@ -43,6 +43,31 @@ spec:
       containers:
       - name:  myapp
         image: maurifc/sample-app:green
+        ports:
+        - containerPort:  80
+          name:  myapp
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myapp-blue
+  labels:
+    app: myapp
+    version: blue
+spec:
+  selector:
+    matchLabels:
+      app: myapp
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: myapp
+        version: blue
+    spec:
+      containers:
+      - name:  myapp
+        image: maurifc/sample-app:blue
         ports:
         - containerPort:  80
           name:  myapp
