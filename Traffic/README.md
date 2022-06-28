@@ -34,7 +34,7 @@ Three images were used
 - maurifc/sample-app:green
 - maurifc/sample-app:blue
 
-Create two deployements, `red`, `green` and `blue`.
+Create three deployements, `red`, `green` and `blue`.
 ```bash
 kubectl apply -f Traffic/app.yaml
 ```
