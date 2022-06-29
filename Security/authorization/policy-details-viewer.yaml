@@ -6,7 +6,7 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app: details #! Allow requests to 'details'
+      app: details #! Allow requests to 'app=details'
   action: ALLOW
   rules:
   - from:

@@ -2,7 +2,7 @@ apiVersion: security.istio.io/v1beta1
 kind: PeerAuthentication
 metadata:
   name: "default"
-  namespace: "istio-system"
+  namespace: "istio-system" #! This applies to all namespaces
 spec:
   mtls:
-    mode: STRICT
+    mode: STRICT #! Enforce mTLS

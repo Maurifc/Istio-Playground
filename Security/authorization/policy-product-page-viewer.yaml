@@ -5,8 +5,8 @@ metadata:
   namespace: default
 spec:
   selector:
-    matchLabels:
-      app: productpage #! This policy applies only to workloads with this label
+    matchLabels: #! Destination match
+      app: productpage #! This policy applies only to workloads with this label (on 'default' namespace)
   action: ALLOW #! You can deny too
   rules:
   - to:
