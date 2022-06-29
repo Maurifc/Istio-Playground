@@ -1,10 +1,10 @@
 # Path based routing
-This example demonstrate how split traffic between different versions of some application using paths
+This example demonstrate how split traffic between different versions of same application using paths
 
 
 ## Setup Traffic Routing
 
-Create traffic routing to redict all traffic to `v1` based on the `path`
+Create traffic routing to redirect all traffic to `v1` based on the `path`
 
 ```bash
 kubectl apply -f Traffic/path-based-routing/virtualservice.yaml
@@ -19,7 +19,7 @@ Create a pod `inside the same namespace` where `myapp` is deployed to send reque
 kubectl run --rm -ti busybox --image=busybox
 ```
 
-From inside the `busybox` pod, send requests to `myapp` service. You're redirected only to `v1` (red)
+From inside the `busybox` pod, send requests to `myapp` service (/ path). You will be redirected to `v1` (red)
 ```bash
 while true; do wget -qO- myapp:8080 | grep -E -o "Red|Green|Blue"; sleep 1; done;
 ```

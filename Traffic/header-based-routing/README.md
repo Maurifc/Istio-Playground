@@ -1,5 +1,5 @@
 # Header based routing
-This example demonstrate how split traffic between different versions of some application accordling to request header `version`
+This example demonstrate how split traffic between different versions of same application accordling to a request header: `version`
 
 
 ## Setup Traffic Routing
@@ -19,7 +19,7 @@ Create a pod `inside the same namespace` where `myapp` is deployed to send reque
 kubectl run --rm -ti busybox --image=busybox
 ```
 
-From inside the `busybox` pod, send requests to `myapp` service. You're redirected only to `v1` (red)
+From inside the `busybox` pod, send requests to `myapp` service. You will be redirected only to `v1` (red)
 ```bash
 while true; do wget -qO- myapp:8080 | grep -E -o "Red|Green|Blue"; sleep 1; done;
 ```

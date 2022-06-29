@@ -1,5 +1,5 @@
 # 80% Traffic
-This example demonstrate how split traffic between different versions of some application
+This example demonstrates how split traffic between different versions (deployments) of same application
 
 
 ## Setup Traffic Routing
@@ -27,7 +27,10 @@ From inside the `busybox` pod, send requests to `myapp` service
 while true; do wget -qO- myapp:8080 | grep -E -o "Red|Green|Blue"; sleep 1; done;
 ```
 
-In another terminal, change the `percent values` on `virtualservice.yaml`
+In another terminal, change the `route weight` at `myapp` virtualservice
+```bash
+kubectl edit virtualservice myapp
+```
 
 Now, come back to the `busybox` terminal and realize how the the traffic has changed...
 
