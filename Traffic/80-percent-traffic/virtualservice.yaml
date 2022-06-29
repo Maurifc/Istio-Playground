@@ -10,8 +10,8 @@ spec:
     - destination:
         host: myapp
         subset: v1 # v1 = label=red
-      weight: 80
+      weight: 80 # 80% of traffic
     - destination:
         host: myapp
         subset: v2 # v1 = label=green
-      weight: 20
+      weight: 20 # 20% of traffic

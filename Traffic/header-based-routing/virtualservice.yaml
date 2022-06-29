@@ -8,9 +8,9 @@ spec:
   http:
   # If header 'version = v2-only'
   - match:
-    - headers:
-        version: 
-          exact: v2-only
+    - headers: # matches version = v2-only
+        version: # header name
+          exact: v2-only 
     route:
     - destination:
         host: myapp
