@@ -2,7 +2,7 @@
 
 ## Enforce mTLS globally
 
-First of all, enforce mTLS globally
+First of all, enforce mTLS globally using the `PeerAuthentication` CRD
 ```bash
 kubectl apply -f Security/authorization/mtls-strict-global.yaml
 ```
